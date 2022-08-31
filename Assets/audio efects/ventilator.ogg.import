@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ventilator.ogg-c2dae170ae79d2a9bce3dd8817913405.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio efects/ventilator.ogg"
+dest_files=[ "res://.import/ventilator.ogg-c2dae170ae79d2a9bce3dd8817913405.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

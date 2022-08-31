@@ -1,0 +1,177 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0014.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0012.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0016.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderAir/spiderAir0002.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderLoad/spiderLoad0008.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderWait/spiderWait0000.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderRun/spiderRun0003.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderWait/spiderWait0001.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderRun/spiderRun0004.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderAttack/spiderAttack0007.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderAttack/spiderAttack0006.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0010.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0015.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderAttack/spiderAttack0005.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0013.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderLoad/spiderLoad0009.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemys/enemySpider/spiderDestroy/spiderDestroy0011.png" type="Texture" id=17]
+[ext_resource path="res://enemySpider.gd" type="Script" id=18]
+[ext_resource path="res://Assets/Enemys/enemySpider/electroWeb/electroWeb0001.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Enemys/enemySpider/electroWeb/electroWeb0002.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Enemys/enemySpider/electroWeb/electroWeb0000.png" type="Texture" id=21]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=22]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=23]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "attack",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "load",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "wait",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 17 ), ExtResource( 2 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 13 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 17.3132, 17.5095 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 96.1927
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 106.057
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color = Color( 0.101961, 0.164706, 0.901961, 1 )
+
+[node name="enemySpider" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 10
+script = ExtResource( 18 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "wait"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="visionChecker2" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 170 )
+
+[node name="visionChecker1" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 170 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 2147483656
+
+[node name="areaVision" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaVision"]
+shape = SubResource( 3 )
+
+[node name="areaAttack" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaAttack"]
+shape = SubResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="areaAttack"]
+visible = false
+position = Vector2( 0, -4.76837e-07 )
+scale = Vector2( 1.3511, 1.32638 )
+frames = SubResource( 5 )
+frame = 2
+playing = true
+
+[node name="timerCD" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="timerDZ" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="timerAttack" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+amount = 28
+explosiveness = 1.0
+process_material = SubResource( 6 )
+
+[node name="timerHit" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 22 )
+volume_db = -8.565
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="areaVision" to="." method="_on_areaVision_body_entered"]
+[connection signal="body_entered" from="areaAttack" to="." method="_on_areaAttack_body_entered"]
+[connection signal="timeout" from="timerCD" to="." method="_on_timerCD_timeout"]
+[connection signal="timeout" from="timerDZ" to="." method="_on_timerDZ_timeout"]
+[connection signal="timeout" from="timerAttack" to="." method="_on_timerAttack_timeout"]
+[connection signal="timeout" from="timerHit" to="." method="_on_timerHit_timeout"]

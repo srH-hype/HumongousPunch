@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "New Anim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 8
+
+[node name="visionChecker1" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+
+[node name="visionChecker2" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -1.224
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

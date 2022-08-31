@@ -1,0 +1,147 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://enemyWasp.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0010.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0013.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemys/enemyWasp/load/enemyWaspLoad0003.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemys/enemyWasp/run/enemyWaspRun0006.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0011.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0014.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemys/enemyWasp/load/enemyWaspLoad0002.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0015.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemys/enemyWasp/run/enemyWaspRun0005.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0012.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemys/enemyWasp/destroy/enemyWaspDestroy0016.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemys/enemyWasp/air/enemyWaspAir0004.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemys/enemyWasp/attack/enemyWaspAttack0007.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemys/enemyWasp/attack/enemyWaspAttack0009.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemys/enemyWasp/wait/enemyWaspWait0001.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemys/enemyWasp/attack/enemyWaspAttack0008.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemys/enemyWasp/wait/enemyWaspWait0000.png" type="Texture" id=18]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=20]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "attack",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "load",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "wait",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.2404, 25.2723 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color = Color( 0.101961, 0.164706, 0.901961, 1 )
+
+[node name="enemyWasp" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 10
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 7.89834, -0.521034 )
+frames = SubResource( 1 )
+animation = "wait"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+enabled = true
+exclude_parent = false
+collision_mask = 8
+
+[node name="visionChecker2" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 350 )
+
+[node name="visionChecker1" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 350 )
+
+[node name="attackChecker1" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 300 )
+
+[node name="attackChecker2" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 300 )
+
+[node name="timerCD" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+amount = 28
+explosiveness = 1.0
+process_material = SubResource( 3 )
+
+[node name="timerHit" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, 12.1131 )
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 19 )
+volume_db = -8.565
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 20 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="timerCD" to="." method="_on_timerCD_timeout"]
+[connection signal="timeout" from="timerHit" to="." method="_on_timerHit_timeout"]

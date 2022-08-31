@@ -1,0 +1,269 @@
+[gd_scene load_steps=66 format=2]
+
+[ext_resource path="res://Assets/boss/wait/enemyBoss0001.png" type="Texture" id=1]
+[ext_resource path="res://Assets/boss/wait/enemyBoss0000.png" type="Texture" id=2]
+[ext_resource path="res://boss.gd" type="Script" id=3]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0023.png" type="Texture" id=6]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0024.png" type="Texture" id=7]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0022.png" type="Texture" id=8]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0026.png" type="Texture" id=9]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0021.png" type="Texture" id=10]
+[ext_resource path="res://Assets/boss/kick/enemyBoss0025.png" type="Texture" id=11]
+[ext_resource path="res://Assets/boss/split/enemyBoss0006.png" type="Texture" id=12]
+[ext_resource path="res://Assets/boss/split/enemyBoss0009.png" type="Texture" id=13]
+[ext_resource path="res://Assets/boss/split/enemyBoss0003.png" type="Texture" id=14]
+[ext_resource path="res://Assets/boss/split/enemyBoss0004.png" type="Texture" id=15]
+[ext_resource path="res://Assets/boss/split/enemyBoss0005.png" type="Texture" id=16]
+[ext_resource path="res://Assets/boss/split/enemyBoss0007.png" type="Texture" id=17]
+[ext_resource path="res://Assets/boss/split/enemyBoss0008.png" type="Texture" id=18]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0030.png" type="Texture" id=19]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0028.png" type="Texture" id=20]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0031.png" type="Texture" id=21]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0027.png" type="Texture" id=22]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0029.png" type="Texture" id=23]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0032.png" type="Texture" id=24]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0033.png" type="Texture" id=25]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0034.png" type="Texture" id=26]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0036.png" type="Texture" id=27]
+[ext_resource path="res://Assets/boss/spin/enemyBoss0035.png" type="Texture" id=28]
+[ext_resource path="res://Assets/boss/jump/enemyBoss0038.png" type="Texture" id=29]
+[ext_resource path="res://Assets/boss/jump/enemyBoss0040.png" type="Texture" id=30]
+[ext_resource path="res://Assets/boss/jump/enemyBoss0039.png" type="Texture" id=31]
+[ext_resource path="res://Assets/boss/jump/enemyBoss0002.png" type="Texture" id=32]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0042.png" type="Texture" id=33]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0043.png" type="Texture" id=34]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0044.png" type="Texture" id=35]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0041.png" type="Texture" id=36]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0045.png" type="Texture" id=37]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0047.png" type="Texture" id=38]
+[ext_resource path="res://Assets/boss/fall/enemyBoss0046.png" type="Texture" id=39]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0054.png" type="Texture" id=40]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0048.png" type="Texture" id=41]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0049.png" type="Texture" id=42]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0051.png" type="Texture" id=43]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0052.png" type="Texture" id=44]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0053.png" type="Texture" id=45]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0050.png" type="Texture" id=46]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0014.png" type="Texture" id=47]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0013.png" type="Texture" id=48]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0010.png" type="Texture" id=49]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0012.png" type="Texture" id=50]
+[ext_resource path="res://Assets/boss/destroy/enemyBoss0055.png" type="Texture" id=51]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0011.png" type="Texture" id=52]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0015.png" type="Texture" id=53]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0018.png" type="Texture" id=54]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0016.png" type="Texture" id=55]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0019.png" type="Texture" id=56]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0017.png" type="Texture" id=57]
+[ext_resource path="res://Assets/boss/dash/enemyBoss0020.png" type="Texture" id=58]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 12 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "split",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "wait",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 42 ), ExtResource( 46 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 40 ), ExtResource( 51 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "kick",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 36 ) ],
+"loop": true,
+"name": "fall1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 56 ), ExtResource( 58 ) ],
+"loop": true,
+"name": "dash3",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "fall4",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 31 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "jump1",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 28 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "spin3",
+"speed": 11.0
+}, {
+"frames": [ ExtResource( 32 ) ],
+"loop": true,
+"name": "jump2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 36 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "fall2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 37 ) ],
+"loop": true,
+"name": "fall3",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 49 ), ExtResource( 52 ), ExtResource( 50 ), ExtResource( 48 ), ExtResource( 53 ), ExtResource( 47 ) ],
+"loop": false,
+"name": "dash1",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 55 ), ExtResource( 57 ), ExtResource( 54 ) ],
+"loop": true,
+"name": "dash2",
+"speed": 21.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 23 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "spin1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "spin2",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.2827, 89.8942 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color = Color( 0.101961, 0.164706, 0.901961, 1 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40.7492, 16.4905 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 78.5113, 10.9582 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 17.9674, 68.0985 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 80.3746
+
+[node name="boss" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 72
+script = ExtResource( 3 )
+
+[node name="timerAttack2" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="timerAttack" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "wait"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.00599, 28.1952 )
+shape = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 42
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.7
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 3 )
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -1.224
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[node name="legsArea" type="Area2D" parent="."]
+position = Vector2( 1, 0 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="legsArea"]
+position = Vector2( -3.69502, 92.5882 )
+shape = SubResource( 4 )
+
+[node name="splitArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="splitArea"]
+position = Vector2( -0.267929, 94.3574 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="timerDZ" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="kickArea1" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kickArea1"]
+position = Vector2( -68.7443, 20.69 )
+shape = SubResource( 6 )
+disabled = true
+
+[node name="spinArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spinArea"]
+position = Vector2( 1.58919, 15.892 )
+shape = SubResource( 7 )
+disabled = true
+
+[node name="kickArea2" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kickArea2"]
+position = Vector2( 68.0768, 21.3574 )
+shape = SubResource( 6 )
+disabled = true
+
+[connection signal="timeout" from="timerAttack2" to="." method="_on_timerAttack2_timeout"]
+[connection signal="timeout" from="timerAttack" to="." method="_on_timerAttack_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="legsArea" to="." method="doDamage"]
+[connection signal="body_entered" from="splitArea" to="." method="doDamage"]
+[connection signal="timeout" from="timerDZ" to="." method="_on_timerDZ_timeout"]
+[connection signal="body_entered" from="kickArea1" to="." method="doDamage"]
+[connection signal="body_entered" from="kickArea2" to="." method="doDamage"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/gomarice_game_continue_02.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/HowToPlay.png" type="Texture" id=2]
+[ext_resource path="res://Button.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_color = Color( 0.686275, 0.662745, 0.662745, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 1 )
+
+[node name="HowToPlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 705.0
+margin_bottom = 512.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 220.0
+margin_top = 18.0
+margin_right = 446.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.592157, 0.537255, 0.537255, 1 )
+text = "How to play
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 573.123
+margin_top = 12.1225
+margin_right = 694.123
+margin_bottom = 59.1225
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.592157, 0.537255, 0.537255, 1 )
+custom_colors/font_color_hover = Color( 0.807843, 0.0784314, 0.690196, 1 )
+text = "Back"
+flat = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

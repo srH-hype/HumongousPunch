@@ -1,0 +1,183 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0010.png" type="Texture" id=1]
+[ext_resource path="res://enemyScorpio.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioLoad/scorpioLoad0014.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0015.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0016.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAir/scorpioAir0012.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0018.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0007.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0009.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0019.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioRun/scorpioRun0003.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioWait/scorpioWait0002.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0021.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0006.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0017.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioDestroy/scorpioDestroy0020.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioWait/scorpioWait0001.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioRun/scorpioRun0004.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0005.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0008.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioAttack/scorpioAttack0011.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Enemys/enemyScorpio/scorpioLoad/scorpioLoad0013.png" type="Texture" id=22]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=23]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=24]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 20 ), ExtResource( 9 ), ExtResource( 1 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "attack",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "load",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "wait",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 16 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "air",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.2872, 25.1336 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20.6819, 16.4155 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color = Color( 0.101961, 0.164706, 0.901961, 1 )
+
+[node name="enemyScorpio" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 10
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "wait"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.162887, 1.11725 )
+shape = SubResource( 2 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+position = Vector2( 21.719, 1.5892 )
+enabled = true
+collision_mask = 8
+
+[node name="visionChecker2" type="RayCast2D" parent="."]
+position = Vector2( 20.1815, 1.68179 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 120 )
+
+[node name="visionChecker1" type="RayCast2D" parent="."]
+position = Vector2( 23.5451, 2.10224 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 120 )
+
+[node name="attackChecker1" type="RayCast2D" parent="."]
+position = Vector2( 19.1543, 3.11814 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 65 )
+
+[node name="attackChecker2" type="RayCast2D" parent="."]
+position = Vector2( 24.4997, 3.11814 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 65 )
+
+[node name="AreaDamage1" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="AreaDamage1"]
+position = Vector2( -19.8526, 8.61526 )
+shape = SubResource( 3 )
+
+[node name="AreaDamage2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaDamage2"]
+position = Vector2( 55.4775, 10.0505 )
+shape = SubResource( 3 )
+
+[node name="timerCD" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="timerDZ" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="timerAttack1" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="timerAttack2" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+amount = 28
+explosiveness = 1.0
+process_material = SubResource( 4 )
+
+[node name="timerHit" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )
+volume_db = -8.565
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 24 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="AreaDamage1" to="." method="_on_AreaDamage1_body_entered"]
+[connection signal="body_entered" from="AreaDamage2" to="." method="_on_AreaDamage2_body_entered"]
+[connection signal="timeout" from="timerCD" to="." method="_on_timerCD_timeout"]
+[connection signal="timeout" from="timerDZ" to="." method="_on_timerDZ_timeout"]
+[connection signal="timeout" from="timerAttack1" to="." method="_on_timerAttack1_timeout"]
+[connection signal="timeout" from="timerAttack2" to="." method="_on_timerAttack2_timeout"]
+[connection signal="timeout" from="timerHit" to="." method="_on_timerHit_timeout"]

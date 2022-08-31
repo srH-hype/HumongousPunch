@@ -1,0 +1,184 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0009.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0007.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0008.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemys/enemyCock/wait/enemyCock0001.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemys/enemyCock/load/enemyCock0003.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0013.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0018.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0015.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0017.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0012.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0014.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemys/enemyCock/destroy/enemyCock0016.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0011.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0005.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemys/enemyCock/wait/enemyCock0000.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0006.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemys/enemyCock/attack/enemyCock0010.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemys/enemyCock/load/enemyCock0004.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Enemys/enemyCock/air/enemyCock0002.png" type="Texture" id=19]
+[ext_resource path="res://enemyCock.gd" type="Script" id=20]
+[ext_resource path="res://Assets/audio efects/ventilator.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Assets/audio efects/destroy.ogg" type="AudioStream" id=22]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 17 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "attack",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "load",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "wait",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "run",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24.9271, 43.1724 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 23.2041, 24.909 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color = Color( 0.101961, 0.164706, 0.901961, 1 )
+
+[node name="enemyCock" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 10
+script = ExtResource( 20 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 7.89834, -0.521034 )
+frames = SubResource( 1 )
+animation = "wait"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8.46354 )
+shape = SubResource( 2 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 70 )
+collision_mask = 8
+
+[node name="visionChecker2" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 140 )
+
+[node name="visionChecker1" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 140 )
+
+[node name="attackChecker1" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 77 )
+
+[node name="attackChecker2" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 77 )
+
+[node name="AreaDamage1" type="Area2D" parent="."]
+position = Vector2( 11.5817, 0 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="AreaDamage1"]
+position = Vector2( 38.2499, 0 )
+shape = SubResource( 3 )
+
+[node name="AreaDamage2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2147483648
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaDamage2"]
+position = Vector2( -51.2741, 0 )
+shape = SubResource( 3 )
+
+[node name="timerCD" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="timerDZ" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="timerAttack1" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="timerAttack2" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+amount = 28
+explosiveness = 1.0
+process_material = SubResource( 4 )
+
+[node name="timerHit" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 21 )
+volume_db = -8.565
+attenuation = 0.517632
+
+[node name="destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 22 )
+volume_db = -17.129
+attenuation = 0.482968
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="AreaDamage1" to="." method="_on_AreaDamage1_body_entered"]
+[connection signal="body_entered" from="AreaDamage2" to="." method="_on_AreaDamage2_body_entered"]
+[connection signal="timeout" from="timerCD" to="." method="_on_timerCD_timeout"]
+[connection signal="timeout" from="timerDZ" to="." method="_on_timerDZ_timeout"]
+[connection signal="timeout" from="timerAttack1" to="." method="_on_timerAttack1_timeout"]
+[connection signal="timeout" from="timerAttack2" to="." method="_on_timerAttack2_timeout"]
+[connection signal="timeout" from="timerHit" to="." method="_on_timerHit_timeout"]

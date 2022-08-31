@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Interfece/barProBack.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Interfece/barProPro.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Interfece/hopeHP.png" type="Texture" id=3]
+[ext_resource path="res://Assets/gomarice_game_continue_02.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Interface.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+outline_size = 2
+font_data = ExtResource( 4 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="overHeat1" type="TextureProgress" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+max_value = 35.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="overHeat2" type="TextureProgress" parent="."]
+margin_left = 512.0
+margin_right = 704.0
+margin_bottom = 40.0
+max_value = 35.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp" type="TextureRect" parent="."]
+margin_left = 296.0
+margin_top = 0.0264902
+margin_right = 336.0
+margin_bottom = 40.0265
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp2" type="TextureRect" parent="."]
+margin_left = 329.659
+margin_top = 0.0264902
+margin_right = 369.659
+margin_bottom = 40.0265
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp3" type="TextureRect" parent="."]
+margin_left = 362.87
+margin_right = 402.87
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 232.0
+margin_top = 104.0
+margin_right = 456.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.807843, 0.0784314, 0.690196, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Destroy All ENemys"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timerIntro" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="timerIntro" to="." method="_on_timerIntro_timeout"]
